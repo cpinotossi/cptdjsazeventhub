@@ -12,12 +12,6 @@ az eventhubs namespace list -g $prefix
 ehnsid=$(az eventhubs namespace show -g $prefix -n $prefix --query id)
 
 node send.js $prefix $prefix
-
-# az servicebus namespace list -g $prefix --query id
-# az servicebus namespace show -g $prefix -n $prefix --query id
-# az role assignment create --assignee "<user@domain>" \
-# --role "Azure Event Hubs Data Owner" \
-# --scope "<your-resource-id>"
 ~~~
 
 
@@ -32,7 +26,7 @@ git remote add origin https://github.com/cpinotossi/$prefix.git
 git status
 git add .gitignore
 git add *
-git commit -m"init"
+git commit -m"working simple json message via send.js"
 git push origin main
 git push --recurse-submodules=on-demand
 git rm README.md # unstage

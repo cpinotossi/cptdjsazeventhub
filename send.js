@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { EventHubProducerClient } = require("@azure/event-hubs");
 const { DefaultAzureCredential } = require("@azure/identity");
 // Load the .env file if it exists
