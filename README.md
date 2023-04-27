@@ -19,3 +19,29 @@ node send.js $prefix $prefix
 # --role "Azure Event Hubs Data Owner" \
 # --scope "<your-resource-id>"
 ~~~
+
+
+## Misc
+### github
+~~~ bash
+prefix=cptdjsazeventhub
+gh repo create $prefix --public
+git init
+git remote remove origin
+git remote add origin https://github.com/cpinotossi/$prefix.git
+git status
+git add .gitignore
+git add *
+git commit -m"init"
+git push origin main
+git push --recurse-submodules=on-demand
+git rm README.md # unstage
+git --help
+git config advice.addIgnoredFile false
+git pull origin main
+git merge 
+origin main
+git config pull.rebase false
+~~~
+
+

@@ -1,13 +1,15 @@
 const { EventHubProducerClient } = require("@azure/event-hubs");
 const { DefaultAzureCredential } = require("@azure/identity");
+// Load the .env file if it exists
+require("dotenv").config();
 
 // Event hubs 
 let args=process.argv;
-const eventHubsResourceName = args.length>2 ? args[2] : process.env.HOSTNAME;
-const eventHubName = args.length>2 ? args[3] : process.env.HOSTNAME;
+const eventHubsResourceName = args.length>2 ? args[2] :process.env["EVENTHUB_NAME"];
+const eventHubName = args.length>2 ? args[3] : process.env["EVENTHUB_NAME"];
 
 // const eventHubsResourceName = "EVENT HUBS RESOURCE NAME";
-const fullyQualifiedNamespace = `${eventHubsResourceName}.servicebus.windows.net`; 
+const fullyQualifiedNamespace = `${process.env["EVENTHUB_RESOURCE_NAME"]}.servicebus.windows.net`; 
 
 // Azure Identity - passwordless authentication
 const credential = new DefaultAzureCredential();
