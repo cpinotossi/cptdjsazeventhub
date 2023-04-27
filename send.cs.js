@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+const os = require('os');
+let networkInterfaces = os.networkInterfaces();
+let currentNetworkInterfacce = networkInterfaces.eth0[0];
+
 const { EventHubProducerClient } = require("@azure/event-hubs");
 // Load the .env file if it exists
 require("dotenv").config();
@@ -21,9 +25,7 @@ async function main() {
   const producer = new EventHubProducerClient(connectionString, eventHubName);
   // Prepare a batch of three events.
   const batch = await producer.createBatch();
-  batch.tryAdd({ body: "passwordless First event" });
-  batch.tryAdd({ body: "passwordless Second event" });
-  batch.tryAdd({ body: "passwordless Third event" });    
+  batch.tryAdd({ body: currentNetworkInterfacce });
 
   // Send the batch to the event hub.
   await producer.sendBatch(batch);
@@ -31,7 +33,7 @@ async function main() {
   // Close the producer client.
   await producer.close();
 
-  console.log("A batch of three events have been sent to the event hub");
+  console.log(`Did send message: ${JSON.stringify(currentNetworkInterfacce)}`);
 }
 
 main().catch((err) => {
